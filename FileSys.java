@@ -11,13 +11,16 @@ import java.util.Scanner;
 public class FileSys {
 	
 	private static FileSys f;
-	String filepath;
+	//String filepath;
 	File sFile;
 	File file;
 	private ArrayList<String> Static;
+	private ArrayList<String> curChapter;
+	private String chap;
 	private FileSys(){
 		Static = null;
 		sFile = null;
+		chap = "";
 	}
 	
 	public static FileSys getInstance() {
@@ -41,14 +44,51 @@ public class FileSys {
 		}
 		return Static;
 	}
+	public ArrayList<String> getChapter(String chapter) throws IOException{
+		if(chapter.equals(chap)) {
+			return curChapter;
+		}
+		curChapter = buildChapter(chapter);
+		
+		return curChapter;
+		
+	}
+	public void closeChapter(String chapter) throws IOException {
+		Files.write(new File(chapter + ".exl").toPath(), curChapter, StandardOpenOption.TRUNCATE_EXISTING);
+	}
+	private ArrayList<String> buildChapter(String chapter) throws IOException{
+		File tf = new File("romfs\\scripts\\" + chapter);
+		ArrayList<String> a = new ArrayList<String>();
+		a = (ArrayList<String>) Files.readAllLines(tf.toPath());
+		return a;
+	}
 	private ArrayList<String> buildStatic() throws IOException{
 		File tf = new File("romfs\\data\\person\\static.txt");
-		if(tf.exists()) return Static;
+		//if(tf.exists()) return Static;
 		ArrayList<String> a = new ArrayList<String>();
 		sFile = new File("romfs\\data\\person\\static.txt");
 		a = (ArrayList<String>) Files.readAllLines(sFile.toPath());
 		return a;
 	}
+	public void cleanUp() {
+		
+		//deletes any Terrain .exl file as they're all unnecessary and i cant delete them with the batch file
+		File dir = new File(System.getProperty("user.dir"));
+		File[] directoryListing = dir.listFiles();
+
+		for (File child : directoryListing) {
+			if(child.getName().contains("Terrain")) {
+				child.delete();
+			}
+		}
+		
+		
+		
+
+		
+		
+	}
+	//private openChapter
 	
 	
 	

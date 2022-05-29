@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Factory {
+public class Factory { //named factory because this class uses the Factory design pattern
 	public static boolean[] choice;
 	
 	
@@ -14,7 +14,8 @@ public class Factory {
 		boolean debug = true;
 		
 		if(debug) {
-			
+			FileSys f = FileSys.getInstance();
+			f.cleanUp();
 		}
 		//everything below will be used later
 		choice = new boolean[7];
