@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Data {
 	
-	private static Data d;
+	protected static Data d;
 	public String[] Skills;
 	public String[] SkillsD;
 	public String[] Classes;
@@ -15,6 +15,11 @@ public class Data {
 	public String[] CharacterR;
 	public String[] cAdults;
 	public String[] cChildren;
+	public String[] wa;
+	public String[] wb;
+	public String[] wc;
+	public String[] JID;
+	public boolean[] Promoted;
 	private ArrayList<ArrayList<String>> Logs;
 	public Data() {
 		String[] CharacterNames = { "Chrom", "Lissa", "Frederick", "Virion", "Sully", "Vaike", "Stahl", "Miriel", "Kellam", "Sumia", "Lon'qu", "Ricken", "Maribelle", "Panne", "Gaius", "Cordelia", "Gregor", "Nowi", "Libra", "Tharja", "Olivia", "Cherche", "Henry", "Lucina", "Say'ri", "Basilio", "Flavia", "Donnel", "Anna", "Owain", "Inigo", "Brady", "Kjelle", "Cynthia", "Severa", "Gerome", "M!Morgan", "F!Morgan", "Yarne", "Laurent", "Noire", "Nah", "Tiki", "Gangrel", "Walhart", "Emmeryn", "Yen'fay", "Aversa", "Priam" };
@@ -33,7 +38,7 @@ public class Data {
         this.cChildren = cChildren;
         Logs = new ArrayList<ArrayList<String>>();
         randomizeChar();
-        
+        Class.setClassData();
 	}
 	public static Data getInstance() {
 		if(d == null) {

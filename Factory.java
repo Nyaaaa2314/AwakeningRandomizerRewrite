@@ -14,8 +14,8 @@ public class Factory { //named factory because this class uses the Factory desig
 		boolean debug = true;
 		
 		if(debug) {
-			FileSys f = FileSys.getInstance();
-			f.cleanUp();
+			Scanner s = new Scanner(new File("test.txt"));
+			System.out.println(s.next());
 		}
 		//everything below will be used later
 		choice = new boolean[7];
